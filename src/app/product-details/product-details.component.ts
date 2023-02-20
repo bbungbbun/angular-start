@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Product, products } from '../products';
+import { CartService } from '../cart.service';
+
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -10,7 +12,11 @@ import { Product, products } from '../products';
 export class ProductDetailsComponent {
   product: Product | undefined;
 
-  constructor(private route: ActivatedRoute) { } // 의존성 주입
+  // 의존성 주입
+  constructor(
+      private route: ActivatedRoute,
+      private cartService: CartService
+  ) { }
 
   ngOnInit() {
     // First get the product id from the current route.
@@ -21,5 +27,10 @@ export class ProductDetailsComponent {
     // Find the product that correspond with the id provided in route.
     // id에 해당하는 product를 찾음
     this.product = products.find(product => product.id === productIdFromRoute);
+  }
+
+  addToCart(product: Product) {
+    this.cartService.addToCart(product);
+    window.alert('Your product has been added to the cart!');
   }
 }

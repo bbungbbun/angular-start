@@ -23,6 +23,8 @@ import {ProductDetailsComponent} from "./product-details/product-details.compone
     TopBarComponent,
     ProductListComponent,
     ProductAlertsComponent,
+    ProductDetailsComponent,
+
   ],
   bootstrap: [
     AppComponent
